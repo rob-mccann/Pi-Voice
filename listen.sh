@@ -17,7 +17,7 @@ echo "$URLENCODED_WORDS" 1>&2
 
 # tried piping straight to aplay but just got silence and no errors :/
 curl -sA "Mozilla" "http://translate.google.com/translate_tts?ie=utf-8&tl=en&q=$URLENCODED_WORDS" | avconv -loglevel panic -i - -f wav out.wav
+aplay out.wav
 
 # housekeeping
-aplay out.wav
 rm out.wav
