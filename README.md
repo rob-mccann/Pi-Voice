@@ -12,11 +12,14 @@ Requirements
 - flac
 - curl
 - avconv
+- [Wolfram Alpha API key](http://products.wolframalpha.com/developers/)
 - Internet connection
 
 Usage
 -----
-Make sure you've got all the requirements installed and run ```sh listen.sh```
+1. Make sure you've got all the requirements installed
+2. set the Wolfram Alpha API key as an environment variable ```export WOLFRAM_API_KEY='AAAAAA-AAAAAAAAAA'```
+3. run ```sh listen.sh```
 
 How it works
 ------------
