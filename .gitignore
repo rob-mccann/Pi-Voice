@@ -35,3 +35,6 @@ nosetests.xml
 .pydevproject
 
 out.flac
+out.wav
+
+*.sublime-
