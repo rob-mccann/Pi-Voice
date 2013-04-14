@@ -19,13 +19,19 @@ if not wolframalpha_key:
     sys.exit(0)
 
 def main():
-    print "recording"
+    print "Recording..."
     recording_rate = 44100
+
+    # How many seconds should we record for?
+    # Eventually we want to stop recording once the microphone returns to silence
     duration = 6
+
+    # execute recording
     (_, recording_wav_filename) = tempfile.mkstemp('.wav')
     do_wav_recording(recording_wav_filename, recording_rate, duration=duration)
 
-    print "converting to FLAC"
+    # convert to a format that Google will recognise
+    print "Converting to FLAC"
     (_, recording_flac_filename) = tempfile.mkstemp('.flac')
     recording_wav = audiotools.open(recording_wav_filename)
     recording_wav.convert(recording_flac_filename,
@@ -33,26 +39,35 @@ def main():
                           #compression=audiotools.FlacAudio.COMPRESSION_MODES[8],
                           #progress=False)
 
-    print "sending to Google"
+    # turn the audio into useful text
+    print "Sending to Google"
     google_speech_url = "http://www.google.com/speech-api/v1/recognize?lang=en"
     headers = {'Content-Type': 'audio/x-flac; rate= %d;' % recording_rate}
     recording_flac_data = open(recording_flac_filename, 'rb').read()
     r = requests.post(google_speech_url, data=recording_flac_data, headers=headers)
+
+    # grab the response
     response = r.text
+
+    # housekeeping
     os.remove(recording_wav_filename)
     os.remove(recording_flac_filename)
 
+    # if google detects some words...
     if 'hypotheses' in response:
+        # we are only interested in the most likely utterance
         phrase = json.loads(response)['hypotheses'][0]['utterance']
+        print "Heard: " + phrase
 
-        print "Looking question up in Wolfram Alpha"
+        print "Looking question up in Wolfram Alpha..."
         answer = query_wolfram_alpha(str(phrase))
+
         if answer is not None:
             say(answer)
         else:
-            say('Sorry, there was not reply from Wolfram Alpha.')
+            say('Sorry, I couldn\'t find an answer to your question')
     else:
-        print "Google couldn't interpret what was said."
+        say('Sorry, I didn\'t understand what you said. Please try again.')
 
 def query_wolfram_alpha(phrase):
     client = wolframalpha.Client(wolframalpha_key)
@@ -125,21 +140,17 @@ def say(sentence):
         (_, tts_mp3_filename) = tempfile.mkstemp('.mp3')
         request_url = "http://translate.google.com/translate_tts?ie=utf-8&tl=en&q=%s" % urlencoded_words
         r = requests.get(request_url, headers={'User-agent': 'Mozilla'})
-        f = open(tts_mp3_filename,'wb')
+        f = open(tts_mp3_filename, 'wb')
         f.write(r.content)
         f.close()
 
-        os.system('aplay %s' % tts_mp3_filename)
+        print "converting to WAV"
+        print tts_mp3_filename
+        (_, tts_wav_filename) = tempfile.mkstemp('.wav')
+        recording_wav = audiotools.open(tts_mp3_filename)
+        recording_wav.convert(tts_wav_filename, audiotools.WaveAudio,)
+        play_wav(tts_wav_filename)
         os.remove(tts_mp3_filename)
-        # the process doesn't work at the moment, audiotools doesn't recognise
-        # the filetype, even though the file returned by google is definitely
-        # a mp3-file.
-        #print "converting to WAV"
-        #print tts_mp3_filename
-        #(_, tts_wav_filename) = tempfile.mkstemp('.wav')
-        #recording_wav = audiotools.open(tts_mp3_filename)
-        #recording_wav.convert(tts_wav_filename, audiotools.WaveAudio,)
-        #play_wav(tts_wav_filename)
 
 def play_wav(filename):
     CHUNK = 1024
