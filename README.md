@@ -34,3 +34,8 @@ Todo
 5. Add Festival tts as an option
 6. Create debian package so the program can be easily installed on the Raspberry Pi
 7. Remove the 6 second time limit. Find a way of listening for longer if there's still an input.
+
+Contributors
+------------
+
+* [Rob McCann](http://robmccann.co.uk) - [@rob_mccann](http://twitter.com/rob_mccann)
