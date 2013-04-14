@@ -7,11 +7,10 @@ Ask it a question like "What was the temperature in London on the 13th July 1982
 
 Requirements
 ------------
-- alsa / alsa-utils
-- python
-- flac
-- curl
-- avconv
+
+- python: audiotools
+- python: pyaudio
+- python: requests
 - [Wolfram Alpha API key](http://products.wolframalpha.com/developers/)
 - Internet connection
 
@@ -19,7 +18,7 @@ Usage
 -----
 1. Make sure you've got all the requirements installed
 2. set the Wolfram Alpha API key as an environment variable ```export WOLFRAM_API_KEY='AAAAAA-AAAAAAAAAA'```
-3. run ```sh listen.sh```
+3. run ```python listen.py```
 
 How it works
 ------------
