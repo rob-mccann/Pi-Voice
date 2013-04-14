@@ -15,8 +15,8 @@ import urllib
 wolframalpha_key = os.environ.get('WOLFRAM_API_KEY')
 
 if not wolframalpha_key:
-    print "I can't contact the knowledge base without an API key. Set one in an environment variable."
-    sys.exit(0)
+    say("I can't contact the knowledge base without an API key. Set one in an environment variable.")
+    sys.exit(1)
 
 
 def main():
