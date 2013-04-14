@@ -137,6 +137,8 @@ def do_wav_recording(recording_filename, recording_rate, duration=5):
 
 
 def say(sentence):
+    print 'Saying: ' + sentence
+    
     if sys.platform == 'darwin':
         os.system('say "%s"' % sentence)
     else:
