@@ -12,14 +12,16 @@ import json
 import wolframalpha
 import urllib
 
-wolframalpha_key = os.environ.get('WOLFRAM_API_KEY')
-
-if not wolframalpha_key:
-    say("I can't contact the knowledge base without an API key. Set one in an environment variable.")
-    sys.exit(1)
-
-
 def main():
+    
+    # use export WOLFRAM_API_KEY='AAA-AAA' to set a key
+    print "Checking for API key..."
+    wolframalpha_key = os.environ.get('WOLFRAM_API_KEY')
+
+    if not wolframalpha_key:
+        say("I can't contact the knowledge base without an API key. Set one in an environment variable.")
+        sys.exit(1)
+
     print "Recording..."
     recording_rate = 44100
 
