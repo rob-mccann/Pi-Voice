@@ -18,6 +18,7 @@ if not wolframalpha_key:
     print "I can't contact the knowledge base without an API key. Set one in an environment variable."
     sys.exit(0)
 
+
 def main():
     print "Recording..."
     recording_rate = 44100
@@ -69,6 +70,7 @@ def main():
     else:
         say('Sorry, I didn\'t understand what you said. Please try again.')
 
+
 def query_wolfram_alpha(phrase):
     client = wolframalpha.Client(wolframalpha_key)
 
@@ -94,7 +96,8 @@ def query_wolfram_alpha(phrase):
     except StopIteration:
         return "Sorry, I couldn't find any results for the query, '" + phrase + "'"
 
-def do_wav_recording(recording_filename, recording_rate, duration = 5):
+
+def do_wav_recording(recording_filename, recording_rate, duration=5):
     CHUNK = 1024
     FORMAT = pyaudio.paInt16
     CHANNELS = 2
@@ -132,6 +135,7 @@ def do_wav_recording(recording_filename, recording_rate, duration = 5):
     wf.writeframes(b''.join(frames))
     wf.close()
 
+
 def say(sentence):
     if sys.platform == 'darwin':
         os.system('say "%s"' % sentence)
@@ -151,6 +155,7 @@ def say(sentence):
         recording_wav.convert(tts_wav_filename, audiotools.WaveAudio,)
         play_wav(tts_wav_filename)
         os.remove(tts_mp3_filename)
+
 
 def play_wav(filename):
     CHUNK = 1024
