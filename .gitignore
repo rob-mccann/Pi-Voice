@@ -37,4 +37,4 @@ nosetests.xml
 out.flac
 out.wav
 
-*.sublime-
+*.sublime-*

@@ -1,0 +1,2 @@
+class NotUnderstoodException(Exception):
+    pass
