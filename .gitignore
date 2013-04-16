@@ -38,3 +38,4 @@ out.flac
 out.wav
 
 *.sublime-*
+.DS_Store
