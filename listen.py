@@ -1,18 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from stt.google import Google as GoogleSTT
-from stt.dummy import Dummy as DummySTT
 from inputs.microphone import Microphone
 from actions.wolfram import Wolfram
 from actions.db import DBPedia
 from ex.exception import NotUnderstoodException
-from tts.google import Google as GoogleTTS
-from tts.osx import OSX as OSXTTS
 
 import sys
 import os
-
+import tts
+import stt
 
 class Job:
     def __init__(self, raw):
@@ -32,10 +29,10 @@ class Job:
 
 def main():
     if sys.platform == 'darwin':
-        speaker = OSXTTS()
+        speaker = tts.OSX()
     else:
         # n.b. at the time of writing, this doesnt work on OSX
-        speaker = GoogleTTS()
+        speaker = tts.Google()
 
     try:
         audioInput = Microphone()
@@ -44,9 +41,9 @@ def main():
 
         speaker.say("Searching...")
 
-        speech_to_text = GoogleSTT(audioInput)
+        speech_to_text = stt.Google(audioInput)
 
-        # speech_to_text = DummySTT('who was winston churchill?')
+        # speech_to_text = stt.Dummy('who was winston churchill?')
 
         job = Job(speech_to_text.get_text())
 
