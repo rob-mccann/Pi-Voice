@@ -11,6 +11,7 @@ Requirements
 - python: audiotools
 - python: pyaudio
 - python: requests
+- python: quepy
 - [Wolfram Alpha API key](http://products.wolframalpha.com/developers/)
 - Internet connection
 
