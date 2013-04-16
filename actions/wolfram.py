@@ -10,6 +10,9 @@ class Wolfram:
             self.key = key
 
     def process(self, job):
+        if job.get_is_processed():
+            return False
+            
         print "Checking for API key..."
 
         if not self.key:
