@@ -11,6 +11,7 @@ import os
 import tts
 import stt
 
+
 class Job:
     def __init__(self, raw):
             self.raw_text = raw
