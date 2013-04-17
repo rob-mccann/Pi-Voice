@@ -31,7 +31,7 @@ Todo
 2. Run the Julius recogniser as a service
 3. Allow plugins to self-regulate their results by weighting them. listen.py chooses the highest weighted.
 4. Allow plugins to run asynchronously.
-5. Add Festival tts as an option
+5. Allow user to specify tts/stt engine as a command line option
 6. Create debian package so the program can be easily installed on the Raspberry Pi
 7. Remove the 6 second time limit. Find a way of listening for longer if there's still an input.
 
