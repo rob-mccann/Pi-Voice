@@ -33,9 +33,10 @@ Todo
 4. Allow plugins to run asynchronously.
 5. Allow user to specify tts/stt engine as a command line option
 6. Create debian package so the program can be easily installed on the Raspberry Pi
-7. Remove the 6 second time limit. Find a way of listening for longer if there's still an input.
+
 
 Contributors
 ------------
 
 * [Rob McCann](http://robmccann.co.uk) - [@rob_mccann](http://twitter.com/rob_mccann)
+* Thomas Weng
