@@ -23,7 +23,7 @@ Usage
 
 How it works
 ------------
-When you run the command, it listens to the microphone for 6 seconds. It then sends the user's voice to Google who convert it to text. We then query Wolfram Alpha with what the user said. We send the response to Google TTS which then reads the response out to the user.
+When you run the command, it listens to the microphone. Once it detects noise has returned to silence, it then sends the user's voice to Google who convert it to text. We then query Wolfram Alpha with what the user said. We send the response to Google TTS which then reads the response out to the user.
 
 Todo
 ----
