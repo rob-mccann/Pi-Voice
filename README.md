@@ -12,6 +12,7 @@ Requirements
 - python: pyaudio
 - python: requests
 - python: quepy
+- python: numpy
 - [Wolfram Alpha API key](http://products.wolframalpha.com/developers/) - note, their free, non-commercial licence is limited to 2,000 queries/month.
 - Internet connection
 
